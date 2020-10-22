@@ -1,0 +1,22 @@
+# -*- yaml -*-
+version: 2.1
+orbs:
+  sixrs-gke: sixriversystems/sixrs-gke@2
+
+jobs:
+  build-and-push:
+    docker:
+      - image: circleci/golang:1.15
+    steps:
+      - checkout
+      - make
+      - sixrs-gke/run-release
+      - setup_remote_docker
+      - sixrs-gke/docker-login
+      - sixrs-gke/build-and-publish
+
+workflows:
+  build_and_release:
+    jobs:
+      - build-and-push:
+          context: 6rs-circle
