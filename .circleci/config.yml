@@ -9,7 +9,7 @@ jobs:
       - image: circleci/golang:1.15
     steps:
       - checkout
-      - make
+      - run: make
       - sixrs-gke/run-release
       - setup_remote_docker
       - sixrs-gke/docker-login
