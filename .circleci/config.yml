@@ -10,11 +10,9 @@ jobs:
     steps:
       - checkout
       - run: make build.linux
-      - run: ls build
       - sixrs-gke/run-release
       - setup_remote_docker
       - sixrs-gke/docker-login
-      - run: ls build
       - sixrs-gke/build-and-publish
 
 workflows:
